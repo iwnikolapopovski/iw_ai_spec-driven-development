@@ -1,0 +1,1378 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Converted from JSX</title>
+  <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+
+  </script>
+  <script>
+
+  </script>
+  <script>
+const {
+  useState,
+  useEffect
+} = React;
+// ============================================================
+// EMBEDDED: Big Process (Spec-Driven Development)
+// ============================================================
+const SpecDrivenDevelopmentDiagram = () => {
+  const [activePhase, setActivePhase] = useState('business');
+  const phases = {
+    business: {
+      id: 'business',
+      number: '1',
+      title: 'Gather Business Requirements',
+      icon: '🎯',
+      color: '#dc2626',
+      items: ['Stakeholders & goals', 'Scope', 'Business rules & outcomes', 'Success metrics'],
+      description: 'The foundation of every project. We work with stakeholders to understand the business problem, define clear goals, and establish measurable success criteria.',
+      aiRole: 'AI assists in analyzing market research, generating stakeholder interview questions, and structuring business requirements documents.',
+      deliverables: ['Business Requirements Document (BRD)', 'Stakeholder Map', 'Success Metrics Dashboard'],
+      standards: null,
+      tools: ['Confluence', 'Miro', 'Claude/ChatGPT for analysis']
+    },
+    requirements: {
+      id: 'requirements',
+      number: '2',
+      title: 'Requirements Spec / SRS',
+      icon: '📋',
+      color: '#dc2626',
+      items: ['Functional & non-functional requirements', 'Acceptance criteria', 'Glossary & definitions', 'ISO 29148'],
+      description: 'Translating business needs into structured, testable requirements following ISO 29148 standard.',
+      aiRole: 'AI helps generate user stories from business requirements, suggests acceptance criteria, identifies requirement conflicts, and ensures completeness.',
+      deliverables: ['Software Requirements Specification (SRS)', 'Requirements Traceability Matrix', 'Glossary Document'],
+      standards: {
+        name: 'ISO/IEC/IEEE 29148:2018',
+        description: 'Systems and software engineering — Requirements engineering',
+        keyPoints: ['Defines requirements engineering processes', 'Establishes requirement characteristics', 'Provides templates for SRS documentation', 'Ensures stakeholder needs are properly captured']
+      },
+      tools: ['Jira', 'Azure DevOps', 'AI Assistants for generation']
+    },
+    technical: {
+      id: 'technical',
+      number: '3',
+      title: 'Technical Spec / SDD',
+      icon: '🏗️',
+      color: '#dc2626',
+      items: ['Architecture views (logical/component/deployment)', 'Interfaces & contracts (API/tool schemas)', 'Data flows + sequence diagrams', 'IEEE 1016'],
+      description: 'The technical blueprint that guides implementation. Following IEEE 1016, we define system architecture, component interactions, and technical constraints.',
+      aiRole: 'AI generates initial architecture proposals, creates API schemas, produces sequence diagrams, and validates technical decisions against best practices.',
+      deliverables: ['Software Design Document (SDD)', 'API Specifications (OpenAPI)', 'Architecture Decision Records (ADRs)', 'C4 Diagrams'],
+      standards: {
+        name: 'IEEE 1016-2009',
+        description: 'Systems Design — Software Design Descriptions',
+        keyPoints: ['Standard structure for design documentation', 'Multiple architectural viewpoints', 'Design rationale and constraints', 'Traceability to requirements']
+      },
+      tools: ['PlantUML', 'Mermaid', 'Draw.io', 'AI for diagram generation']
+    },
+    usecases: {
+      id: 'usecases',
+      number: '4a',
+      title: 'Use Cases',
+      icon: '🔄',
+      color: '#dc2626',
+      items: ['Use case model + specs', 'Alternative / error flows', 'Domain model (key entities)', 'Data & integration boundaries'],
+      description: 'Detailed behavioral specifications that describe how users interact with the system. These become the primary input for AI code generation.',
+      aiRole: 'AI generates comprehensive use case flows from requirements, identifies edge cases and error scenarios, and creates domain models.',
+      deliverables: ['Use Case Specifications', 'Domain Model', 'Integration Contracts', 'Error Handling Matrix'],
+      standards: null,
+      tools: ['Enterprise Architect', 'Lucidchart', 'AI for flow generation']
+    },
+    testing: {
+      id: 'testing',
+      number: '4b',
+      title: 'Test & Verification Strategy',
+      icon: '✅',
+      color: '#dc2626',
+      items: ['Test pyramid + automation plan', 'Req-to-test traceability', 'Security/performance/resilience tests'],
+      description: 'Comprehensive testing strategy ensuring every requirement is verified. The test pyramid guides AI in generating appropriate tests at each level.',
+      aiRole: 'AI generates unit tests from code, creates integration test scenarios from use cases, and suggests security/performance test cases.',
+      deliverables: ['Test Strategy Document', 'Test Cases', 'Automation Framework', 'Traceability Matrix'],
+      standards: null,
+      tools: ['Jest', 'Playwright', 'k6', 'AI for test generation']
+    },
+    epics: {
+      id: 'epics',
+      number: '4c',
+      title: 'Epics/Features/Tasks & Development Plan',
+      icon: '📊',
+      color: '#dc2626',
+      items: ['Backlog + dependencies', 'Milestones & Rollout plan', 'Definition of Ready/Done'],
+      description: 'Breaking down the technical specification into actionable work items.',
+      aiRole: 'AI assists in breaking epics into features and tasks, estimating complexity, identifying dependencies, and generating sprint planning recommendations.',
+      deliverables: ['Product Backlog', 'Sprint Plans', 'Release Roadmap', 'DoR/DoD Checklists'],
+      standards: null,
+      tools: ['Jira', 'Azure Boards', 'Linear', 'AI for decomposition']
+    },
+    guardrails: {
+      id: 'guardrails',
+      number: '4d',
+      title: 'Guard Rails',
+      icon: '🛡️',
+      color: '#dc2626',
+      items: ['Definition of Ready gates', 'Security & compliance checks', 'AI output validation rules', 'Architecture compliance review', 'Static analysis baselines'],
+      description: 'Quality and safety gates that every work item must pass before entering implementation. Guard Rails enforce standards, catch risks early, and ensure AI-generated artefacts meet team and regulatory expectations.',
+      aiRole: 'AI scans specs and designs for security anti-patterns, flags missing acceptance criteria, validates API contracts against schema rules, and generates pre-implementation checklists.',
+      deliverables: ['Definition of Ready Checklist', 'Security Pre-Check Report', 'AI Output Validation Log', 'Architecture Compliance Sign-off'],
+      standards: {
+        name: 'OWASP SAMM / ISO 27001 Controls',
+        description: 'Security Assurance Maturity Model & Information Security Management',
+        keyPoints: ['Threat modelling before code is written', 'Secure design review at specification level', 'Data classification and privacy impact assessment', 'Automated policy-as-code enforcement']
+      },
+      tools: ['Semgrep', 'Checkov', 'OWASP Dependency-Check', 'AI for risk analysis']
+    },
+    implementation: {
+      id: 'implementation',
+      number: '5',
+      title: 'Implementation',
+      icon: '💻',
+      color: '#dc2626',
+      items: ['Code development (AI-assisted)', 'Component integration', 'Code reviews & quality checks', 'Continuous testing & validation'],
+      description: 'The actual coding phase where AI assistants accelerate development. Following the specs ensures consistent, high-quality code.',
+      aiRole: 'AI generates code from specifications, assists with refactoring, performs code reviews, and helps maintain coding standards across the team.',
+      deliverables: ['Source Code', 'Code Documentation', 'Review Reports', 'Quality Metrics'],
+      standards: null,
+      tools: ['GitHub Copilot', 'Claude Code', 'Cursor', 'CI/CD Pipelines']
+    },
+    production: {
+      id: 'production',
+      number: '6',
+      title: 'Production Ready Solution',
+      icon: '🚀',
+      color: '#16a34a',
+      items: ['Deployed & monitored application', 'Documentation complete', 'Handover & training done', 'Continuous improvement loop'],
+      description: 'The culmination of the spec-driven process: a production-ready solution that meets all requirements, is fully tested, documented, and ready for operations.',
+      aiRole: 'AI assists in generating deployment scripts, runbooks, monitoring dashboards, and user documentation.',
+      deliverables: ['Deployed Application', 'Operations Runbook', 'User Documentation', 'Training Materials'],
+      standards: null,
+      tools: ['GitHub Actions', 'ArgoCD', 'Datadog', 'AI for documentation']
+    }
+  };
+  const PhaseCard = ({
+    phase,
+    height = 'auto'
+  }) => {
+    const isActive = activePhase === phase.id;
+    return /*#__PURE__*/React.createElement("div", {
+      onClick: () => setActivePhase(phase.id),
+      style: {
+        width: '220px',
+        minHeight: height,
+        padding: '1rem',
+        borderRadius: '0.75rem',
+        cursor: 'pointer',
+        transition: 'all 0.2s ease',
+        background: isActive ? 'rgba(220,38,38,0.18)' : 'rgba(255,255,255,0.07)',
+        border: `2px solid ${isActive ? phase.color : 'rgba(255,255,255,0.1)'}`,
+        boxShadow: isActive ? `0 4px 20px ${phase.color}40` : '0 2px 8px rgba(0,0,0,0.3)',
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'center'
+      }
+    }, /*#__PURE__*/React.createElement("div", {
+      style: {
+        fontSize: '2rem',
+        marginBottom: '0.5rem',
+        textAlign: 'center'
+      }
+    }, phase.icon), /*#__PURE__*/React.createElement("div", {
+      style: {
+        display: 'flex',
+        alignItems: 'center',
+        gap: '0.4rem',
+        marginBottom: '0.4rem'
+      }
+    }, /*#__PURE__*/React.createElement("span", {
+      style: {
+        fontSize: '0.65rem',
+        fontWeight: 700,
+        color: 'white',
+        background: phase.color,
+        padding: '0.1rem 0.35rem',
+        borderRadius: '0.2rem',
+        minWidth: '1.1rem',
+        textAlign: 'center'
+      }
+    }, phase.number), /*#__PURE__*/React.createElement("h3", {
+      style: {
+        margin: 0,
+        fontSize: '0.85rem',
+        fontWeight: 700,
+        color: '#e2e8f0',
+        lineHeight: 1.3
+      }
+    }, phase.title)), /*#__PURE__*/React.createElement("ul", {
+      style: {
+        margin: 0,
+        paddingLeft: '0.5rem',
+        fontSize: '0.72rem',
+        color: '#94a3b8',
+        lineHeight: 1.5,
+        listStyle: 'none'
+      }
+    }, phase.items.map((item, i) => /*#__PURE__*/React.createElement("li", {
+      key: i,
+      style: {
+        marginBottom: '0.15rem',
+        display: 'flex',
+        alignItems: 'flex-start',
+        gap: '0.4rem'
+      }
+    }, /*#__PURE__*/React.createElement("span", {
+      style: {
+        color: phase.color,
+        fontSize: '0.5rem',
+        marginTop: '0.3rem'
+      }
+    }, "\u25CF"), /*#__PURE__*/React.createElement("span", null, item)))));
+  };
+  const activePhaseData = activePhase ? phases[activePhase] : null;
+  return /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontFamily: "'Inter', -apple-system, sans-serif",
+      padding: '1rem 1.5rem'
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      textAlign: 'center',
+      marginBottom: '1rem'
+    }
+  }, /*#__PURE__*/React.createElement("h1", {
+    style: {
+      fontSize: '1.6rem',
+      fontWeight: 800,
+      background: 'linear-gradient(135deg, #ef4444 0%, #dc2626 50%, #f87171 100%)',
+      WebkitBackgroundClip: 'text',
+      WebkitTextFillColor: 'transparent',
+      backgroundClip: 'text',
+      marginBottom: '0.3rem',
+      letterSpacing: '-0.02em'
+    }
+  }, "Spec-Driven Software Development with AI"), /*#__PURE__*/React.createElement("p", {
+    style: {
+      color: '#94a3b8',
+      fontSize: '0.9rem',
+      margin: 0
+    }
+  }, "A structured approach for medium and large projects combining industry standards with AI-assisted development")), /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+      gap: '0.5rem',
+      marginBottom: '1rem',
+      flexWrap: 'wrap'
+    }
+  }, /*#__PURE__*/React.createElement(PhaseCard, {
+    phase: phases.business,
+    height: "200px"
+  }), /*#__PURE__*/React.createElement("div", {
+    style: {
+      color: '#dc2626',
+      fontSize: '1.2rem'
+    }
+  }, "\u2192"), /*#__PURE__*/React.createElement(PhaseCard, {
+    phase: phases.requirements,
+    height: "200px"
+  }), /*#__PURE__*/React.createElement("div", {
+    style: {
+      color: '#dc2626',
+      fontSize: '1.2rem'
+    }
+  }, "\u2192"), /*#__PURE__*/React.createElement(PhaseCard, {
+    phase: phases.technical,
+    height: "200px"
+  }), /*#__PURE__*/React.createElement("div", {
+    style: {
+      color: '#dc2626',
+      fontSize: '1.2rem'
+    }
+  }, "\u2192"), /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: 'flex',
+      flexDirection: 'column',
+      gap: '0.35rem'
+    }
+  }, /*#__PURE__*/React.createElement(PhaseCard, {
+    phase: phases.usecases
+  }), /*#__PURE__*/React.createElement(PhaseCard, {
+    phase: phases.testing
+  }), /*#__PURE__*/React.createElement(PhaseCard, {
+    phase: phases.epics
+  })), /*#__PURE__*/React.createElement("div", {
+    style: {
+      color: '#dc2626',
+      fontSize: '1.2rem'
+    }
+  }, "\u2192"), /*#__PURE__*/React.createElement(PhaseCard, {
+    phase: phases.guardrails,
+    height: "200px"
+  }), /*#__PURE__*/React.createElement("div", {
+    style: {
+      color: '#dc2626',
+      fontSize: '1.2rem'
+    }
+  }, "\u2192"), /*#__PURE__*/React.createElement(PhaseCard, {
+    phase: phases.implementation,
+    height: "200px"
+  }), /*#__PURE__*/React.createElement("div", {
+    style: {
+      color: '#dc2626',
+      fontSize: '1.2rem'
+    }
+  }, "\u2192"), /*#__PURE__*/React.createElement("div", {
+    onClick: () => setActivePhase('production'),
+    style: {
+      width: '140px',
+      minHeight: '200px',
+      padding: '1rem',
+      borderRadius: '0.75rem',
+      cursor: 'pointer',
+      background: activePhase === 'production' ? 'linear-gradient(135deg, #16a34a, #22c55e)' : 'linear-gradient(135deg, #22c55e, #4ade80)',
+      display: 'flex',
+      flexDirection: 'column',
+      justifyContent: 'center',
+      alignItems: 'center',
+      textAlign: 'center',
+      boxShadow: activePhase === 'production' ? '0 8px 25px rgba(22,163,74,0.4)' : '0 4px 15px rgba(34,197,94,0.3)'
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: '2.5rem',
+      marginBottom: '0.5rem'
+    }
+  }, "\uD83D\uDE80"), /*#__PURE__*/React.createElement("h3", {
+    style: {
+      margin: 0,
+      fontSize: '0.9rem',
+      fontWeight: 800,
+      color: 'white',
+      textTransform: 'uppercase',
+      letterSpacing: '0.03em',
+      lineHeight: 1.3
+    }
+  }, "Production Ready Solution"))), activePhaseData && /*#__PURE__*/React.createElement("div", {
+    style: {
+      padding: '1.25rem',
+      background: 'rgba(255,255,255,0.06)',
+      borderRadius: '0.75rem',
+      border: `1px solid ${activePhaseData.color}44`,
+      boxShadow: '0 4px 20px rgba(0,0,0,0.3)',
+      animation: 'fadeIn 0.3s ease'
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: 'flex',
+      alignItems: 'center',
+      gap: '0.75rem',
+      marginBottom: '0.75rem',
+      paddingBottom: '0.75rem',
+      borderBottom: '1px solid rgba(255,255,255,0.1)'
+    }
+  }, /*#__PURE__*/React.createElement("span", {
+    style: {
+      fontSize: '2rem'
+    }
+  }, activePhaseData.icon), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("h2", {
+    style: {
+      margin: 0,
+      color: activePhaseData.color,
+      fontSize: '1.25rem',
+      fontWeight: 700
+    }
+  }, activePhaseData.title), /*#__PURE__*/React.createElement("p", {
+    style: {
+      margin: '0.2rem 0 0',
+      color: '#94a3b8',
+      fontSize: '0.85rem'
+    }
+  }, activePhaseData.description))), /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: 'grid',
+      gridTemplateColumns: 'repeat(3, 1fr)',
+      gap: '0.75rem',
+      marginBottom: '0.75rem'
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      padding: '0.75rem',
+      background: 'rgba(245,158,11,0.15)',
+      borderRadius: '0.5rem',
+      border: '1px solid rgba(245,158,11,0.4)'
+    }
+  }, /*#__PURE__*/React.createElement("h4", {
+    style: {
+      margin: '0 0 0.3rem',
+      color: '#f59e0b',
+      fontSize: '0.8rem'
+    }
+  }, "\uD83E\uDD16 AI Assistant Role"), /*#__PURE__*/React.createElement("p", {
+    style: {
+      margin: 0,
+      fontSize: '0.78rem',
+      color: '#fbbf24',
+      lineHeight: 1.5
+    }
+  }, activePhaseData.aiRole)), /*#__PURE__*/React.createElement("div", {
+    style: {
+      padding: '0.75rem',
+      background: 'rgba(236,72,153,0.15)',
+      borderRadius: '0.5rem',
+      border: '1px solid rgba(236,72,153,0.4)'
+    }
+  }, /*#__PURE__*/React.createElement("h4", {
+    style: {
+      margin: '0 0 0.3rem',
+      color: '#ec4899',
+      fontSize: '0.8rem'
+    }
+  }, "\uD83D\uDCE6 Key Deliverables"), /*#__PURE__*/React.createElement("ul", {
+    style: {
+      margin: 0,
+      paddingLeft: '1rem',
+      fontSize: '0.78rem',
+      color: '#f9a8d4',
+      lineHeight: 1.5
+    }
+  }, activePhaseData.deliverables.map((d, i) => /*#__PURE__*/React.createElement("li", {
+    key: i
+  }, d)))), /*#__PURE__*/React.createElement("div", {
+    style: {
+      padding: '0.75rem',
+      background: 'rgba(255,255,255,0.07)',
+      borderRadius: '0.5rem',
+      border: '1px solid rgba(255,255,255,0.15)'
+    }
+  }, /*#__PURE__*/React.createElement("h4", {
+    style: {
+      margin: '0 0 0.3rem',
+      color: '#94a3b8',
+      fontSize: '0.8rem'
+    }
+  }, "\uD83D\uDEE0\uFE0F Recommended Tools"), /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: 'flex',
+      flexWrap: 'wrap',
+      gap: '0.25rem'
+    }
+  }, activePhaseData.tools.map((tool, i) => /*#__PURE__*/React.createElement("span", {
+    key: i,
+    style: {
+      padding: '0.2rem 0.5rem',
+      background: 'rgba(255,255,255,0.1)',
+      borderRadius: '0.25rem',
+      fontSize: '0.72rem',
+      color: '#e2e8f0'
+    }
+  }, tool))))), activePhaseData.standards && /*#__PURE__*/React.createElement("div", {
+    style: {
+      padding: '0.75rem',
+      background: 'rgba(220,38,38,0.15)',
+      borderRadius: '0.5rem',
+      border: '1px solid rgba(220,38,38,0.4)',
+      marginBottom: '0.75rem'
+    }
+  }, /*#__PURE__*/React.createElement("h4", {
+    style: {
+      margin: '0 0 0.3rem',
+      color: '#f87171',
+      fontSize: '0.8rem'
+    }
+  }, "\uD83D\uDCDC ", activePhaseData.standards.name), /*#__PURE__*/React.createElement("p", {
+    style: {
+      margin: '0 0 0.5rem',
+      fontSize: '0.78rem',
+      color: '#fca5a5',
+      fontStyle: 'italic'
+    }
+  }, activePhaseData.standards.description), /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: 'grid',
+      gridTemplateColumns: 'repeat(2, 1fr)',
+      gap: '0.4rem'
+    }
+  }, activePhaseData.standards.keyPoints.map((point, i) => /*#__PURE__*/React.createElement("div", {
+    key: i,
+    style: {
+      display: 'flex',
+      alignItems: 'flex-start',
+      gap: '0.3rem',
+      fontSize: '0.72rem',
+      color: '#fca5a5'
+    }
+  }, /*#__PURE__*/React.createElement("span", {
+    style: {
+      color: '#f87171'
+    }
+  }, "\u2713"), point)))), /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: 'grid',
+      gridTemplateColumns: 'repeat(3, 1fr)',
+      gap: '0.75rem'
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      padding: '0.75rem',
+      background: 'rgba(22,163,74,0.15)',
+      borderRadius: '0.5rem',
+      border: '1px solid rgba(22,163,74,0.4)'
+    }
+  }, /*#__PURE__*/React.createElement("h4", {
+    style: {
+      margin: '0 0 0.3rem',
+      color: '#4ade80',
+      fontSize: '0.78rem'
+    }
+  }, "\uD83D\uDCD0 Why Spec-Driven?"), /*#__PURE__*/React.createElement("p", {
+    style: {
+      margin: 0,
+      fontSize: '0.72rem',
+      color: '#86efac',
+      lineHeight: 1.4
+    }
+  }, "Clear specifications give AI assistants the context they need to generate accurate, consistent code that meets real requirements\u2014not hallucinated ones.")), /*#__PURE__*/React.createElement("div", {
+    style: {
+      padding: '0.75rem',
+      background: 'rgba(37,99,235,0.15)',
+      borderRadius: '0.5rem',
+      border: '1px solid rgba(37,99,235,0.4)'
+    }
+  }, /*#__PURE__*/React.createElement("h4", {
+    style: {
+      margin: '0 0 0.3rem',
+      color: '#60a5fa',
+      fontSize: '0.78rem'
+    }
+  }, "\uD83D\uDD17 Traceability"), /*#__PURE__*/React.createElement("p", {
+    style: {
+      margin: 0,
+      fontSize: '0.72rem',
+      color: '#93c5fd',
+      lineHeight: 1.4
+    }
+  }, "Every line of code traces back to a requirement. Every test validates an acceptance criterion. This chain ensures quality at every step.")), /*#__PURE__*/React.createElement("div", {
+    style: {
+      padding: '0.75rem',
+      background: 'rgba(147,51,234,0.15)',
+      borderRadius: '0.5rem',
+      border: '1px solid rgba(147,51,234,0.4)'
+    }
+  }, /*#__PURE__*/React.createElement("h4", {
+    style: {
+      margin: '0 0 0.3rem',
+      color: '#c084fc',
+      fontSize: '0.78rem'
+    }
+  }, "\uD83E\uDD1D Human + AI"), /*#__PURE__*/React.createElement("p", {
+    style: {
+      margin: 0,
+      fontSize: '0.72rem',
+      color: '#d8b4fe',
+      lineHeight: 1.4
+    }
+  }, "Humans define the \"what\" and \"why.\" AI accelerates the \"how.\" This partnership delivers enterprise-grade solutions at startup speed.")))), /*#__PURE__*/React.createElement("div", {
+    style: {
+      textAlign: 'center',
+      marginTop: '0.75rem',
+      color: '#94a3b8',
+      fontSize: '0.72rem'
+    }
+  }, /*#__PURE__*/React.createElement("p", {
+    style: {
+      margin: 0
+    }
+  }, "Click on any phase to see detailed information, AI roles, and deliverables")));
+};
+
+// ============================================================
+// EMBEDDED: Small Process (AI-Assisted Development)
+// ============================================================
+const AIAssistantProcessDiagram = () => {
+  const [activePhase, setActivePhase] = useState(null);
+  const [activeMode, setActiveMode] = useState('vibe');
+  const vibePhases = [{
+    id: 'prepare',
+    title: 'Preparation',
+    subtitle: 'Build Knowledge Base',
+    icon: '📋',
+    color: '#0ea5e9',
+    steps: ['Create planning.md (strategic context)', 'Create instructions.md / CLAUDE.md (technical rules)', 'Define task.md with acceptance criteria', 'Configure AI-ignore for sensitive data', 'Select appropriate LLM model'],
+    tools: ['All approved assistants']
+  }, {
+    id: 'prime',
+    title: 'Prime AI',
+    subtitle: 'Load Context',
+    icon: '🧠',
+    color: '#8b5cf6',
+    steps: ['Start new chat session', 'Load planning.md into context', 'Load instructions.md / CLAUDE.md', 'Provide current task.md', 'Verify AI understands requirements'],
+    tools: ['Copilot Chat', 'Cursor', 'Claude Code']
+  }, {
+    id: 'generate',
+    title: 'Generate & Refine',
+    subtitle: 'Iterative Development',
+    icon: '⚡',
+    color: '#f59e0b',
+    steps: ['Request plan before code', 'Review proposed approach', 'Generate code iteratively', 'Provide corrective feedback', 'Accept or refine suggestions'],
+    tools: ['IDE Assistants', 'Claude Code']
+  }, {
+    id: 'verify',
+    title: 'Verify & Test',
+    subtitle: 'Trust but Verify',
+    icon: '✅',
+    color: '#10b981',
+    steps: ['Manual code review', 'Run existing test suites', 'Ask AI to generate unit tests', 'Security vulnerability scan', 'Performance profiling'],
+    tools: ['Jest', 'Playwright', 'SAST tools']
+  }, {
+    id: 'commit',
+    title: 'Commit',
+    subtitle: 'Version Control',
+    icon: '📦',
+    color: '#6366f1',
+    steps: ['Atomic commits (one change per commit)', 'Clear, descriptive commit messages', 'Update documentation if needed', 'Create PR for review', 'Tag AI-generated code segments'],
+    tools: ['Git', 'GitHub', 'Claude Code']
+  }];
+  const agenticPhases = [{
+    id: 'objective',
+    title: 'Define Objective',
+    subtitle: 'High-Level Goal',
+    icon: '🎯',
+    color: '#0ea5e9',
+    steps: ['Specify end goal (not steps)', 'Define acceptance criteria', 'Set scope boundaries', 'Configure permission rules', 'Establish safety constraints'],
+    tools: ['Claude Code', 'Devin', 'Codex']
+  }, {
+    id: 'plan',
+    title: 'Agent Planning',
+    subtitle: 'Autonomous Decomposition',
+    icon: '🗺️',
+    color: '#8b5cf6',
+    steps: ['Agent analyzes codebase', 'Creates task decomposition', 'Identifies file dependencies', 'Proposes execution order', 'Human reviews plan'],
+    tools: ['Claude Code (ultrathink)', 'Planner agents']
+  }, {
+    id: 'execute',
+    title: 'Autonomous Execution',
+    subtitle: 'Agent Takes Action',
+    icon: '🤖',
+    color: '#f59e0b',
+    steps: ['Agent writes/modifies code', 'Runs tests automatically', 'Iterates on failures', 'Calls subagents if needed', 'Human monitors progress'],
+    tools: ['Claude Code', 'Multi-agent swarms']
+  }, {
+    id: 'review',
+    title: 'Human Review',
+    subtitle: 'Quality Gate',
+    icon: '👁️',
+    color: '#10b981',
+    steps: ['Review all changed files', 'Verify architectural decisions', 'Security audit (subagent)', 'Performance validation', 'Approve or request changes'],
+    tools: ['Git diff', 'Security reviewers']
+  }, {
+    id: 'integrate',
+    title: 'CI/CD Integration',
+    subtitle: 'Automated Pipeline',
+    icon: '🚀',
+    color: '#6366f1',
+    steps: ['Headless mode in pipeline', 'Automated test execution', 'Security scanning', 'Deployment to staging', 'Production release'],
+    tools: ['GitHub Actions', 'Claude Code headless']
+  }];
+  const phases = activeMode === 'vibe' ? vibePhases : agenticPhases;
+  const toolCategories = [{
+    name: 'IDE-Based (Vibe)',
+    tools: ['GitHub Copilot', 'Cursor AI', 'Windsurf', 'JetBrains AI'],
+    color: '#0ea5e9',
+    bestFor: 'Daily coding, inline suggestions, chat assistance'
+  }, {
+    name: 'CLI Agentic',
+    tools: ['Claude Code', 'Codex CLI', 'Aider'],
+    color: '#8b5cf6',
+    bestFor: 'Complex multi-file tasks, CI/CD automation'
+  }, {
+    name: 'Internal/Private',
+    tools: ['Ollama', 'Open WebUI'],
+    color: '#10b981',
+    bestFor: 'Sensitive data, PII, production configs'
+  }];
+  return /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontFamily: "'IBM Plex Sans', -apple-system, sans-serif",
+      color: '#e2e8f0',
+      padding: '1.5rem'
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      textAlign: 'center',
+      marginBottom: '1.5rem'
+    }
+  }, /*#__PURE__*/React.createElement("h1", {
+    style: {
+      fontSize: '1.8rem',
+      fontWeight: 700,
+      background: 'linear-gradient(90deg, #0ea5e9, #8b5cf6, #f59e0b)',
+      WebkitBackgroundClip: 'text',
+      WebkitTextFillColor: 'transparent',
+      marginBottom: '0.3rem'
+    }
+  }, "AI-Assisted Development Process"), /*#__PURE__*/React.createElement("p", {
+    style: {
+      color: '#94a3b8',
+      fontSize: '0.95rem'
+    }
+  }, "IWC Engineering \u2022 Governance Framework v0.9")), /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: 'flex',
+      justifyContent: 'center',
+      gap: '0.75rem',
+      marginBottom: '1.5rem'
+    }
+  }, ['vibe', 'agentic'].map(mode => /*#__PURE__*/React.createElement("button", {
+    key: mode,
+    onClick: () => {
+      setActiveMode(mode);
+      setActivePhase(null);
+    },
+    style: {
+      padding: '0.6rem 1.5rem',
+      borderRadius: '0.5rem',
+      border: 'none',
+      cursor: 'pointer',
+      fontWeight: 600,
+      fontSize: '0.9rem',
+      background: activeMode === mode ? mode === 'vibe' ? 'linear-gradient(135deg, #0ea5e9, #8b5cf6)' : 'linear-gradient(135deg, #8b5cf6, #f59e0b)' : '#334155',
+      color: 'white',
+      boxShadow: activeMode === mode ? '0 4px 20px rgba(14,165,233,0.4)' : 'none'
+    }
+  }, mode === 'vibe' ? '🎨 Vibe Coding' : '🤖 Agentic Coding'))), /*#__PURE__*/React.createElement("div", {
+    style: {
+      maxWidth: '700px',
+      margin: '0 auto 1.5rem',
+      padding: '0.75rem 1.25rem',
+      background: 'rgba(255,255,255,0.05)',
+      borderRadius: '0.75rem',
+      border: '1px solid rgba(255,255,255,0.1)'
+    }
+  }, /*#__PURE__*/React.createElement("p", {
+    style: {
+      margin: 0,
+      lineHeight: 1.5,
+      fontSize: '0.9rem'
+    }
+  }, activeMode === 'vibe' ? /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("strong", {
+    style: {
+      color: '#0ea5e9'
+    }
+  }, "Vibe Coding:"), " Human-in-the-loop, conversational workflow. You describe intentions in natural language, review all generated code, and maintain full control. Best for prototyping, learning, and daily development tasks.") : /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("strong", {
+    style: {
+      color: '#8b5cf6'
+    }
+  }, "Agentic Coding:"), " Goal-driven autonomous execution. You define high-level objectives, the agent plans and executes multi-step tasks independently. Human reviews output. Best for complex refactoring, CI/CD, and enterprise workflows."))), /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: 'flex',
+      justifyContent: 'center',
+      alignItems: 'flex-start',
+      gap: '0.5rem',
+      flexWrap: 'wrap',
+      marginBottom: '1.5rem'
+    }
+  }, phases.map((phase, idx) => /*#__PURE__*/React.createElement(React.Fragment, {
+    key: phase.id
+  }, /*#__PURE__*/React.createElement("div", {
+    onClick: () => setActivePhase(activePhase === phase.id ? null : phase.id),
+    style: {
+      width: '195px',
+      padding: '1rem',
+      borderRadius: '0.75rem',
+      cursor: 'pointer',
+      transition: 'all 0.3s ease',
+      background: activePhase === phase.id ? `linear-gradient(135deg, ${phase.color}22, ${phase.color}44)` : 'rgba(255,255,255,0.03)',
+      border: `2px solid ${activePhase === phase.id ? phase.color : 'rgba(255,255,255,0.1)'}`,
+      transform: activePhase === phase.id ? 'scale(1.05)' : 'scale(1)',
+      boxShadow: activePhase === phase.id ? `0 8px 30px ${phase.color}33` : '0 2px 10px rgba(0,0,0,0.2)'
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: '1.75rem',
+      marginBottom: '0.4rem'
+    }
+  }, phase.icon), /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontWeight: 700,
+      color: phase.color,
+      marginBottom: '0.15rem',
+      fontSize: '0.85rem'
+    }
+  }, phase.title), /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: '0.7rem',
+      color: '#94a3b8'
+    }
+  }, phase.subtitle)), idx < phases.length - 1 && /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: 'flex',
+      alignItems: 'center',
+      fontSize: '1.2rem',
+      color: '#475569',
+      alignSelf: 'center'
+    }
+  }, "\u2192")))), activePhase && (() => {
+    const phase = phases.find(p => p.id === activePhase);
+    if (!phase) return null;
+    return /*#__PURE__*/React.createElement("div", {
+      style: {
+        maxWidth: '800px',
+        margin: '0 auto 1.5rem',
+        padding: '1.25rem',
+        background: 'rgba(255,255,255,0.05)',
+        borderRadius: '0.75rem',
+        border: `1px solid ${phase.color}44`,
+        animation: 'fadeIn 0.3s ease'
+      }
+    }, /*#__PURE__*/React.createElement("div", {
+      style: {
+        display: 'grid',
+        gridTemplateColumns: '1fr 1fr',
+        gap: '1.5rem'
+      }
+    }, /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("h3", {
+      style: {
+        color: phase.color,
+        marginBottom: '0.75rem',
+        display: 'flex',
+        alignItems: 'center',
+        gap: '0.4rem',
+        fontSize: '1rem'
+      }
+    }, phase.icon, " ", phase.title, " Steps"), /*#__PURE__*/React.createElement("ol", {
+      style: {
+        margin: 0,
+        paddingLeft: '1.1rem',
+        lineHeight: 1.7,
+        fontSize: '0.85rem'
+      }
+    }, phase.steps.map((step, i) => /*#__PURE__*/React.createElement("li", {
+      key: i,
+      style: {
+        marginBottom: '0.3rem'
+      }
+    }, step)))), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("h4", {
+      style: {
+        color: '#94a3b8',
+        marginBottom: '0.4rem',
+        fontSize: '0.8rem'
+      }
+    }, "RECOMMENDED TOOLS"), /*#__PURE__*/React.createElement("div", {
+      style: {
+        display: 'flex',
+        flexWrap: 'wrap',
+        gap: '0.4rem'
+      }
+    }, phase.tools.map((tool, i) => /*#__PURE__*/React.createElement("span", {
+      key: i,
+      style: {
+        padding: '0.2rem 0.6rem',
+        background: `${phase.color}22`,
+        borderRadius: '1rem',
+        fontSize: '0.78rem',
+        color: phase.color
+      }
+    }, tool))))));
+  })(), /*#__PURE__*/React.createElement("div", {
+    style: {
+      maxWidth: '850px',
+      margin: '0 auto'
+    }
+  }, /*#__PURE__*/React.createElement("h2", {
+    style: {
+      textAlign: 'center',
+      marginBottom: '1rem',
+      color: '#e2e8f0',
+      fontSize: '1.2rem'
+    }
+  }, "Approved Tool Categories"), /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: 'grid',
+      gridTemplateColumns: 'repeat(3, 1fr)',
+      gap: '0.75rem'
+    }
+  }, toolCategories.map((cat, i) => /*#__PURE__*/React.createElement("div", {
+    key: i,
+    style: {
+      padding: '1rem',
+      background: 'rgba(255,255,255,0.03)',
+      borderRadius: '0.75rem',
+      border: `1px solid ${cat.color}44`
+    }
+  }, /*#__PURE__*/React.createElement("h3", {
+    style: {
+      color: cat.color,
+      marginBottom: '0.5rem',
+      fontSize: '0.95rem'
+    }
+  }, cat.name), /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: 'flex',
+      flexWrap: 'wrap',
+      gap: '0.3rem',
+      marginBottom: '0.5rem'
+    }
+  }, cat.tools.map((tool, j) => /*#__PURE__*/React.createElement("span", {
+    key: j,
+    style: {
+      padding: '0.15rem 0.5rem',
+      background: '#1e293b',
+      borderRadius: '0.25rem',
+      fontSize: '0.72rem'
+    }
+  }, tool))), /*#__PURE__*/React.createElement("p", {
+    style: {
+      fontSize: '0.78rem',
+      color: '#94a3b8',
+      margin: 0,
+      lineHeight: 1.4
+    }
+  }, /*#__PURE__*/React.createElement("strong", null, "Best for:"), " ", cat.bestFor))))), /*#__PURE__*/React.createElement("div", {
+    style: {
+      maxWidth: '700px',
+      margin: '1.5rem auto 0',
+      padding: '0.75rem 1.25rem',
+      background: 'rgba(239,68,68,0.1)',
+      borderRadius: '0.75rem',
+      border: '1px solid rgba(239,68,68,0.3)',
+      display: 'flex',
+      gap: '0.75rem',
+      alignItems: 'flex-start'
+    }
+  }, /*#__PURE__*/React.createElement("span", {
+    style: {
+      fontSize: '1.25rem'
+    }
+  }, "\u26A0\uFE0F"), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("h4", {
+    style: {
+      color: '#f87171',
+      margin: '0 0 0.3rem 0',
+      fontSize: '0.85rem'
+    }
+  }, "Security Reminder"), /*#__PURE__*/React.createElement("p", {
+    style: {
+      margin: 0,
+      fontSize: '0.8rem',
+      lineHeight: 1.5
+    }
+  }, /*#__PURE__*/React.createElement("strong", null, "Never input:"), " API keys, credentials, PII, production data, or proprietary algorithms into any AI assistant. Use ", /*#__PURE__*/React.createElement("code", {
+    style: {
+      background: '#1e293b',
+      padding: '0.1rem 0.25rem',
+      borderRadius: '0.2rem',
+      fontSize: '0.75rem'
+    }
+  }, ".gitignore"), " and", /*#__PURE__*/React.createElement("code", {
+    style: {
+      background: '#1e293b',
+      padding: '0.1rem 0.25rem',
+      borderRadius: '0.2rem',
+      fontSize: '0.75rem',
+      marginLeft: '0.2rem'
+    }
+  }, ".aiignore"), " /", /*#__PURE__*/React.createElement("code", {
+    style: {
+      background: '#1e293b',
+      padding: '0.1rem 0.25rem',
+      borderRadius: '0.2rem',
+      fontSize: '0.75rem',
+      marginLeft: '0.2rem'
+    }
+  }, "CLAUDE.md deny rules"), " to protect sensitive files."))), /*#__PURE__*/React.createElement("div", {
+    style: {
+      textAlign: 'center',
+      marginTop: '1.5rem',
+      color: '#64748b',
+      fontSize: '0.75rem'
+    }
+  }, /*#__PURE__*/React.createElement("p", {
+    style: {
+      margin: 0
+    }
+  }, "Click on any phase to see detailed steps \u2022 Toggle between Vibe and Agentic modes"), /*#__PURE__*/React.createElement("p", {
+    style: {
+      marginTop: '0.3rem'
+    }
+  }, "Based on IWC Process v0.8 \u2022 Updated for 2026 standards including Claude Code")));
+};
+
+// ============================================================
+// MAIN PRESENTATION SHELL
+// ============================================================
+const Presentation = () => {
+  const [currentView, setCurrentView] = useState('landing');
+  const [transitioning, setTransitioning] = useState(false);
+  const navigateTo = view => {
+    setTransitioning(true);
+    setTimeout(() => {
+      setCurrentView(view);
+      setTransitioning(false);
+    }, 400);
+  };
+  const navButtonStyle = isBack => ({
+    position: 'fixed',
+    top: '1.25rem',
+    [isBack ? 'left' : 'right']: '1.25rem',
+    padding: '0.5rem 1.25rem',
+    borderRadius: '2rem',
+    border: 'none',
+    cursor: 'pointer',
+    fontWeight: 600,
+    fontSize: '0.85rem',
+    background: 'rgba(255,255,255,0.12)',
+    color: '#fff',
+    backdropFilter: 'blur(12px)',
+    zIndex: 100,
+    transition: 'all 0.2s',
+    display: 'flex',
+    alignItems: 'center',
+    gap: '0.4rem'
+  });
+
+  // ---- LANDING PAGE ----
+  if (currentView === 'landing') {
+    return /*#__PURE__*/React.createElement("div", {
+      style: {
+        minHeight: '100vh',
+        background: '#0a0a0f',
+        fontFamily: "'Sora', 'DM Sans', -apple-system, sans-serif",
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        justifyContent: 'center',
+        position: 'relative',
+        overflow: 'hidden',
+        opacity: transitioning ? 0 : 1,
+        transition: 'opacity 0.4s ease'
+      }
+    }, /*#__PURE__*/React.createElement("div", {
+      style: {
+        position: 'absolute',
+        inset: 0,
+        background: 'radial-gradient(ellipse 80% 60% at 50% 40%, rgba(99,102,241,0.12) 0%, transparent 60%), radial-gradient(ellipse 60% 50% at 20% 80%, rgba(220,38,38,0.08) 0%, transparent 50%), radial-gradient(ellipse 50% 40% at 80% 20%, rgba(14,165,233,0.08) 0%, transparent 50%)',
+        pointerEvents: 'none'
+      }
+    }), /*#__PURE__*/React.createElement("div", {
+      style: {
+        position: 'absolute',
+        inset: 0,
+        backgroundImage: 'linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px)',
+        backgroundSize: '60px 60px',
+        pointerEvents: 'none'
+      }
+    }), /*#__PURE__*/React.createElement("div", {
+      style: {
+        position: 'relative',
+        textAlign: 'center',
+        maxWidth: '900px',
+        padding: '2rem'
+      }
+    }, /*#__PURE__*/React.createElement("div", {
+      style: {
+        display: 'inline-flex',
+        alignItems: 'center',
+        gap: '0.5rem',
+        padding: '0.4rem 1.25rem',
+        borderRadius: '2rem',
+        background: 'rgba(255,255,255,0.06)',
+        border: '1px solid rgba(255,255,255,0.1)',
+        marginBottom: '2rem',
+        fontSize: '0.85rem',
+        color: '#94a3b8',
+        letterSpacing: '0.08em',
+        textTransform: 'uppercase'
+      }
+    }, /*#__PURE__*/React.createElement("span", {
+      style: {
+        width: 8,
+        height: 8,
+        borderRadius: '50%',
+        background: '#22c55e',
+        boxShadow: '0 0 8px rgba(34,197,94,0.6)'
+      }
+    }), "IWConnect Engineering"), /*#__PURE__*/React.createElement("h1", {
+      style: {
+        fontSize: 'clamp(2.5rem, 5vw, 4rem)',
+        fontWeight: 800,
+        color: '#f1f5f9',
+        lineHeight: 1.1,
+        marginBottom: '1.25rem',
+        letterSpacing: '-0.03em'
+      }
+    }, "AI-Assisted", /*#__PURE__*/React.createElement("br", null), /*#__PURE__*/React.createElement("span", {
+      style: {
+        background: 'linear-gradient(135deg, #6366f1 0%, #0ea5e9 40%, #f59e0b 100%)',
+        WebkitBackgroundClip: 'text',
+        WebkitTextFillColor: 'transparent'
+      }
+    }, "Development Processes")), /*#__PURE__*/React.createElement("p", {
+      style: {
+        fontSize: '1.15rem',
+        color: '#64748b',
+        lineHeight: 1.6,
+        maxWidth: '600px',
+        margin: '0 auto 3rem'
+      }
+    }, "How we combine structured engineering with AI tools to deliver software \u2014 from enterprise platforms to rapid prototypes."), /*#__PURE__*/React.createElement("div", {
+      style: {
+        display: 'grid',
+        gridTemplateColumns: '1fr 1fr',
+        gap: '1.5rem',
+        maxWidth: '750px',
+        margin: '0 auto'
+      }
+    }, /*#__PURE__*/React.createElement("div", {
+      onClick: () => navigateTo('enterprise'),
+      style: {
+        padding: '2rem 1.75rem',
+        borderRadius: '1rem',
+        cursor: 'pointer',
+        background: 'linear-gradient(145deg, rgba(220,38,38,0.08) 0%, rgba(220,38,38,0.02) 100%)',
+        border: '1px solid rgba(220,38,38,0.2)',
+        textAlign: 'left',
+        transition: 'all 0.3s ease',
+        position: 'relative',
+        overflow: 'hidden'
+      },
+      onMouseEnter: e => {
+        e.currentTarget.style.transform = 'translateY(-4px)';
+        e.currentTarget.style.borderColor = 'rgba(220,38,38,0.5)';
+        e.currentTarget.style.boxShadow = '0 20px 60px rgba(220,38,38,0.15)';
+      },
+      onMouseLeave: e => {
+        e.currentTarget.style.transform = 'translateY(0)';
+        e.currentTarget.style.borderColor = 'rgba(220,38,38,0.2)';
+        e.currentTarget.style.boxShadow = 'none';
+      }
+    }, /*#__PURE__*/React.createElement("div", {
+      style: {
+        position: 'absolute',
+        top: '-30px',
+        right: '-30px',
+        width: '120px',
+        height: '120px',
+        borderRadius: '50%',
+        background: 'rgba(220,38,38,0.06)',
+        pointerEvents: 'none'
+      }
+    }), /*#__PURE__*/React.createElement("div", {
+      style: {
+        fontSize: '0.7rem',
+        fontWeight: 700,
+        color: '#dc2626',
+        textTransform: 'uppercase',
+        letterSpacing: '0.12em',
+        marginBottom: '0.75rem'
+      }
+    }, "Enterprise Projects"), /*#__PURE__*/React.createElement("h2", {
+      style: {
+        fontSize: '1.35rem',
+        fontWeight: 700,
+        color: '#f1f5f9',
+        marginBottom: '0.75rem',
+        lineHeight: 1.3
+      }
+    }, "Spec-Driven Development"), /*#__PURE__*/React.createElement("p", {
+      style: {
+        fontSize: '0.85rem',
+        color: '#94a3b8',
+        lineHeight: 1.6,
+        marginBottom: '1.25rem'
+      }
+    }, "Full lifecycle from business requirements through ISO/IEEE standards to production. For medium and large-scale projects."), /*#__PURE__*/React.createElement("div", {
+      style: {
+        display: 'flex',
+        flexWrap: 'wrap',
+        gap: '0.35rem',
+        marginBottom: '1rem'
+      }
+    }, ['BRD', 'SRS', 'SDD', 'Use Cases', 'Testing', 'Epics'].map(tag => /*#__PURE__*/React.createElement("span", {
+      key: tag,
+      style: {
+        padding: '0.15rem 0.5rem',
+        borderRadius: '0.25rem',
+        background: 'rgba(220,38,38,0.12)',
+        color: '#f87171',
+        fontSize: '0.68rem',
+        fontWeight: 600
+      }
+    }, tag))), /*#__PURE__*/React.createElement("div", {
+      style: {
+        display: 'flex',
+        alignItems: 'center',
+        gap: '0.4rem',
+        color: '#dc2626',
+        fontWeight: 600,
+        fontSize: '0.85rem'
+      }
+    }, "Explore process ", /*#__PURE__*/React.createElement("span", {
+      style: {
+        fontSize: '1.1rem'
+      }
+    }, "\u2192"))), /*#__PURE__*/React.createElement("div", {
+      onClick: () => navigateTo('poc'),
+      style: {
+        padding: '2rem 1.75rem',
+        borderRadius: '1rem',
+        cursor: 'pointer',
+        background: 'linear-gradient(145deg, rgba(14,165,233,0.08) 0%, rgba(139,92,246,0.04) 100%)',
+        border: '1px solid rgba(14,165,233,0.2)',
+        textAlign: 'left',
+        transition: 'all 0.3s ease',
+        position: 'relative',
+        overflow: 'hidden'
+      },
+      onMouseEnter: e => {
+        e.currentTarget.style.transform = 'translateY(-4px)';
+        e.currentTarget.style.borderColor = 'rgba(14,165,233,0.5)';
+        e.currentTarget.style.boxShadow = '0 20px 60px rgba(14,165,233,0.15)';
+      },
+      onMouseLeave: e => {
+        e.currentTarget.style.transform = 'translateY(0)';
+        e.currentTarget.style.borderColor = 'rgba(14,165,233,0.2)';
+        e.currentTarget.style.boxShadow = 'none';
+      }
+    }, /*#__PURE__*/React.createElement("div", {
+      style: {
+        position: 'absolute',
+        top: '-30px',
+        right: '-30px',
+        width: '120px',
+        height: '120px',
+        borderRadius: '50%',
+        background: 'rgba(14,165,233,0.06)',
+        pointerEvents: 'none'
+      }
+    }), /*#__PURE__*/React.createElement("div", {
+      style: {
+        fontSize: '0.7rem',
+        fontWeight: 700,
+        color: '#0ea5e9',
+        textTransform: 'uppercase',
+        letterSpacing: '0.12em',
+        marginBottom: '0.75rem'
+      }
+    }, "POC / Prototype / Demo"), /*#__PURE__*/React.createElement("h2", {
+      style: {
+        fontSize: '1.35rem',
+        fontWeight: 700,
+        color: '#f1f5f9',
+        marginBottom: '0.75rem',
+        lineHeight: 1.3
+      }
+    }, "AI-Assisted Workflow"), /*#__PURE__*/React.createElement("p", {
+      style: {
+        fontSize: '0.85rem',
+        color: '#94a3b8',
+        lineHeight: 1.6,
+        marginBottom: '1.25rem'
+      }
+    }, "Lightweight, fast process with vibe coding and agentic modes. For rapid prototyping and demo applications."), /*#__PURE__*/React.createElement("div", {
+      style: {
+        display: 'flex',
+        flexWrap: 'wrap',
+        gap: '0.35rem',
+        marginBottom: '1rem'
+      }
+    }, ['Vibe Coding', 'Agentic', 'Claude Code', 'Copilot'].map(tag => /*#__PURE__*/React.createElement("span", {
+      key: tag,
+      style: {
+        padding: '0.15rem 0.5rem',
+        borderRadius: '0.25rem',
+        background: 'rgba(14,165,233,0.12)',
+        color: '#38bdf8',
+        fontSize: '0.68rem',
+        fontWeight: 600
+      }
+    }, tag))), /*#__PURE__*/React.createElement("div", {
+      style: {
+        display: 'flex',
+        alignItems: 'center',
+        gap: '0.4rem',
+        color: '#0ea5e9',
+        fontWeight: 600,
+        fontSize: '0.85rem'
+      }
+    }, "Explore process ", /*#__PURE__*/React.createElement("span", {
+      style: {
+        fontSize: '1.1rem'
+      }
+    }, "\u2192")))), /*#__PURE__*/React.createElement("p", {
+      style: {
+        marginTop: '3rem',
+        fontSize: '0.78rem',
+        color: '#475569',
+        letterSpacing: '0.02em'
+      }
+    }, "Select a process to explore the framework \u2014 then we'll walk through the documents live")));
+  }
+
+  // ---- ENTERPRISE VIEW ----
+  if (currentView === 'enterprise') {
+    return /*#__PURE__*/React.createElement("div", {
+      style: {
+        minHeight: '100vh',
+        background: 'radial-gradient(ellipse 80% 40% at 50% 0%, rgba(220,38,38,0.12) 0%, transparent 60%), linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #0f172a 100%)',
+        opacity: transitioning ? 0 : 1,
+        transition: 'opacity 0.4s ease'
+      }
+    }, /*#__PURE__*/React.createElement("button", {
+      onClick: () => navigateTo('landing'),
+      style: navButtonStyle(true)
+    }, /*#__PURE__*/React.createElement("span", null, "\u2190"), " Back"), /*#__PURE__*/React.createElement("button", {
+      onClick: () => navigateTo('poc'),
+      style: {
+        ...navButtonStyle(false),
+        background: 'rgba(14,165,233,0.15)',
+        color: '#38bdf8'
+      }
+    }, "POC Process ", /*#__PURE__*/React.createElement("span", null, "\u2192")), /*#__PURE__*/React.createElement("div", {
+      style: {
+        paddingTop: '0.5rem'
+      }
+    }, /*#__PURE__*/React.createElement(SpecDrivenDevelopmentDiagram, null)), /*#__PURE__*/React.createElement("style", null, `@keyframes fadeIn { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: translateY(0); } }`));
+  }
+
+  // ---- POC VIEW ----
+  if (currentView === 'poc') {
+    return /*#__PURE__*/React.createElement("div", {
+      style: {
+        minHeight: '100vh',
+        background: 'linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #0f172a 100%)',
+        opacity: transitioning ? 0 : 1,
+        transition: 'opacity 0.4s ease'
+      }
+    }, /*#__PURE__*/React.createElement("button", {
+      onClick: () => navigateTo('landing'),
+      style: navButtonStyle(true)
+    }, /*#__PURE__*/React.createElement("span", null, "\u2190"), " Back"), /*#__PURE__*/React.createElement("button", {
+      onClick: () => navigateTo('enterprise'),
+      style: {
+        ...navButtonStyle(false),
+        background: 'rgba(220,38,38,0.15)',
+        color: '#f87171'
+      }
+    }, "Enterprise Process ", /*#__PURE__*/React.createElement("span", null, "\u2192")), /*#__PURE__*/React.createElement("div", {
+      style: {
+        paddingTop: '0.5rem'
+      }
+    }, /*#__PURE__*/React.createElement(AIAssistantProcessDiagram, null)), /*#__PURE__*/React.createElement("style", null, `@keyframes fadeIn { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: translateY(0); } }`));
+  }
+  return null;
+};
+Presentation;
+  </script>
+</head>
+<body>
+  <div id="root"></div>
+  <script>
+    var root = ReactDOM.createRoot(document.getElementById('root'));
+    root.render(React.createElement(Presentation));
+  </script>
+</body>
+</html>
